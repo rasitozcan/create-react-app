@@ -1,8 +1,8 @@
 {
-  "name": "react-scripts",
-  "version": "1.0.5",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "name": "microfrontend-react-scripts",
+  "version": "1.0.6",
+  "description": "Configuration and scripts for Create React App for Microfrontends.",
+  "repository": "rasitozcan/microfrontend-react-scripts",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"

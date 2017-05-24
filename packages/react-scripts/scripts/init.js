@@ -151,6 +151,15 @@ module.exports = function(
 
   console.log();
   console.log(`Success! Created ${appName} at ${appPath}`);
+  console.log(chalk.red('VERY IMPORTANT:'));
+  console.log(
+    'Change REACT_APP_TYPE value in .env file at the root of your project if you do not want your application to work as a micro front end.'
+  );
+  console.log(
+    '  You can find these environment values in the company dashboard under application settings.'
+  );
+  console.log('  https://documentationurlhere');
+  console.log();
   console.log('Inside that directory, you can run several commands:');
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} start`));

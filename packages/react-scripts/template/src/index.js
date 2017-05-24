@@ -4,5 +4,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const mountNode = document.createElement('DIV');
+document.body.appendChild(mountNode);
+
+ReactDOM.render(<App />, mountNode);
 registerServiceWorker();
