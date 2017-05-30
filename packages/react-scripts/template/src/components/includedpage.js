@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import 'whatwg-fetch';
 
 export default class IncludedPage extends Component {
   componentWillMount(props) {
+    this.instanceID = Math.floor(Math.random() * 1000);
     this.renderApp(this.props.app);
     this.appUrls = {
       app1: 'http://localhost:3001',
@@ -22,9 +22,27 @@ export default class IncludedPage extends Component {
       });
   }
 
+  removeRoot() {
+    this.refs.includedpage.childNodes.forEach(node => {
+      if (node.id === 'root') {
+        this.refs.includedpage.removeChild(node);
+      }
+    });
+  }
+
+  prepareDOM(body) {
+    const includedPage = this.refs.includedpage;
+    const mountEl = document.createElement('DIV');
+    mountEl.setAttribute('id', this.instanceID);
+
+    includedPage.innerHTML = body;
+    includedPage.appendChild(mountEl);
+    this.removeRoot();
+  }
+
   renderApp() {
     this.fetchApp().then(body => {
-      this.refs.includedpage.innerHTML = body;
+      this.prepareDOM(body);
       [].forEach.call(
         this.refs.includedpage.querySelectorAll('script'),
         nonExecutableScript => {
@@ -35,6 +53,7 @@ export default class IncludedPage extends Component {
               nonExecutableScript.attributes.src.value
           );
           script.setAttribute('type', 'text/javascript');
+          script.setAttribute('data-instanceid', this.instanceID);
           this.refs.includedpage.appendChild(script);
           nonExecutableScript.parentNode.removeChild(nonExecutableScript);
         }
@@ -43,6 +62,6 @@ export default class IncludedPage extends Component {
   }
 
   render() {
-    return <div ref="includedpage" />;
+    return <div className="included-page" ref="includedpage" />;
   }
 }
