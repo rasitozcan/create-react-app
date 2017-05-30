@@ -54,7 +54,7 @@ export default class IncludedPage extends Component {
           );
           script.setAttribute('type', 'text/javascript');
           script.setAttribute('data-instanceid', this.instanceID);
-          this.refs.includedpage.appendChild(script);
+          document.appendChild(script);
           nonExecutableScript.parentNode.removeChild(nonExecutableScript);
         }
       );
